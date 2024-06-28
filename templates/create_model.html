@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeuroCanvas</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lobster+Two"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Concert+One"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@0;1&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    body {
+      background-color: black;
+      font-family: "Merriweather", serif;
+      font-weight: 900;
+      font-style: normal;
+      margin: 0; /* Remove default margin */
+    }
+    h2,
+    h3,
+    p {
+      color: white;
+    }
+
+    h1 {
+      padding-left: 30px;
+    }
+    header {
+      position: absolute;
+      top: -35px;
+      left: 0; /* Adjust position to align with the full width */
+      right: 0; /* Adjust position to align with the full width */
+      z-index: 1000; /* Ensure the navbar stays on top of other elements */
+      background-color: black; /* Set background color of navbar */
+      padding: 10px 0; /* Add padding to the navbar */
+    }
+
+    .nav {
+      display: flex;
+      width: 100%; /* Set the width to 100% */
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-left div {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-right a {
+      list-style: none; /* Remove default list styles */
+      margin: 0; /* Remove default margin */
+      border: 1px solid white; /* Add border */
+      background-color: wheat; /* Set background color */
+      color: black;
+      border-radius: 0.5rem;
+      text-decoration: underline;
+      font-family: "IM Fell Double Pica", serif; /* Font family */
+      font-weight: 400; /* Font weight */
+      padding: 5px; /* Add padding to separate items from the border */
+    }
+
+    .nav-right li {
+      display: inline; /* Display list items inline */
+      margin-left: 20px; /* Add margin between list items */
+    }
+
+    .nav-right li a {
+      text-decoration: none;
+      color: black;
+      font-size: 24px;
+    }
+    .nav-right li a:hover {
+      background-color: rgb(33, 122, 206);
+    }
+    .container {
+      justify-content: space-between; /* Distribute space between sections */
+      margin-top: 188px; /* Add margin to create space below the fixed navbar */
+    }
+
+    .image {
+      flex: 1; /* Take up 50% of the container width */
+    }
+
+    .image img {
+      max-width: 100%;
+      height: auto;
+    }
+    #model-section,
+    .model-summary {
+      padding: 20px;
+    }
+     
+    .material-icons-outlined {
+            color: #888888;
+            transition: all 0.3s ease-out;
+        }
+
+        .material-icons-outlined:hover {
+            color: #ff9800;
+            transform: scale(1.25) translateY(-4px);
+            cursor: pointer;
+        }
+
+        .profile {
+            height: 3rem;
+            width: auto;
+            cursor: pointer;
+            left: 43%;
+            position: relative;
+        }
+
+        .nav-right li ul {
+            display: none;
+            opacity: 0;
+            position: absolute;
+            top: 86%;
+          left: 400px;
+            background-color: #fff; /* Background color of the sub-menu */
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+        }
+
+        .nav-right li:hover ul {
+            display: block;
+            opacity: 1;
+        }
+
+        .sub-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.725rem;
+            cursor: pointer;
+            padding: 0.5rem 1.5rem;
+        }
+
+        .sub-item:hover {
+            background-color: rgba(232, 232, 232, 0.4);
+        }
+
+        .sub-item:hover .material-icons-outlined {
+            color: #ff9800;
+            transform: scale(1.08) translateY(-2px);
+            cursor: pointer;
+        }
+
+        .sub-item:hover p {
+            color: #000;
+            cursor: pointer;
+        }
+
+        .sub-item p {
+            font-size: 0.85rem;
+            color: #888888;
+            font-weight: 500;
+            margin: 0.4rem 0;
+            flex: 1;
+        }
+        
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="nav-bg"></div>
+        <ul class="nav-left">
+            <li>
+                <div>
+                    <img src="{{ url_for('static', filename='images/brain_logo.png') }}" height="40px"
+                         width="40px" alt="NeuroCanvas"/>
+                    <p style="font-family: 'IM Fell Double Pica', serif; font-weight: 400; font-size: 24px;">
+                        NeuroCanvas
+                    </p>
+                </div>
+            </li>
+        </ul>
+        <ul class="nav-right">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/create_model">Create Model</a></li>
+            <li><a href="/pred">Predict Data</a></li>
+            <li><a href="/evaluation_matrix">Evaluation Matrix</a></li>
+           
+        </ul>
+    </nav>
+    <hr/>
+</header>
+
+    <div class="container">
+      <h1 style="color: white">Model Created Succesfully....</h1>
+      <h1 style="color: white">EfficientNetB1 model Architecture</h1>
+      <hr />
+    </div>
+
+    <!-- Add the model creation section below the header -->
+    <section id="model-section">
+      <div class="model-summary">
+        <pre style="white-space: pre-wrap; color: white">
+{{ model_summary  }}</pre>
+      </div>
+    </section>
+  </body>
+</html>
